@@ -20,7 +20,7 @@ A modern, feature-rich Tic Tac Toe web app with multiplayer and AI modes, built 
 ## Demo
 
 Try the live demo here (add your deployed URL if you have one)  
-`https://yourdomain.com`
+(https://scd-wd-3.onrender.com/)
 
 ## Getting Started
 
