@@ -2,7 +2,6 @@
 
 A modern, feature-rich Tic Tac Toe web app with multiplayer and AI modes, built with Node.js, Socket.IO, and vanilla JavaScript.
 
-![Demo screenshot](screenshot.png) <!-- Add your screenshot here -->
 
 ## Features
 
