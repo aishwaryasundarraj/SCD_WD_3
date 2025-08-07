@@ -2,24 +2,32 @@
 
 A modern, feature-rich Tic Tac Toe web app with multiplayer and AI modes, built with Node.js, Socket.IO, and vanilla JavaScript.
 
+Summarized Features
 
-## Features
+🎮 Real-time Multiplayer: Play with anyone online, synchronized instantly
 
-- **Multiplayer mode** via WebSocket (Socket.IO)
-- Play **against AI** with a simple random move opponent
-- Prevents moves after win/draw — game properly ends
-- Move timer with a progress bar and timeout handling
-- Customizable player avatar emojis
-- Confetti animation celebration on win
-- Voice feedback using Web Speech API
-- Audio sound effects for moves, wins, draws, and timeouts
-- Dark mode toggle
-- Move history and leaderboard display
-- Responsive design with accessibility support
+🤖 Play vs AI: Challenge a computer opponent with random moves
+
+😃 Avatar Selection: Choose your unique emoji avatar
+
+⏱️ Timer & Timeout: Each move is timed, with clear visual feedback
+
+🔊 Sound Effects: Hear satisfying sounds for moves, wins, draws, and timeouts
+
+🎉 Confetti Animation: Celebrate victories with animated confetti
+
+🗣️ Voice Feedback: Announcements for wins, losses, and draws via speech synthesis
+
+🌑 Light/Dark Mode: Toggle between day and night themes
+
+🏆 Leaderboard & Scores: Track top players and personal performance
+
+📱 Responsive Design: Enjoy smooth gameplay on mobile and desktop
+
 
 ## Demo
 
-Try the live demo here (add your deployed URL if you have one)  
+Try the live demo here 
 (https://scd-wd-3.onrender.com/)
 
 ## Getting Started
