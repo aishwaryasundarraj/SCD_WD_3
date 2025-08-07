@@ -421,33 +421,75 @@
     }
     return null;
   }
+function aiMove() {
+  if (gameOver) return;
 
-  function aiMove() {
-    if (gameOver) return;
+  // Find available spots
+  let open = board.map((v, i) => (v === null ? i : null)).filter(i => i !== null);
+  if (open.length === 0) return;
 
-    let open = board.map((v, i) => (v === null ? i : null)).filter(i => i !== null);
-    if (open.length === 0) return;
-    let move = open[Math.floor(Math.random() * open.length)];
-    board[move] = aiAvatar;
-    history.push({ playerName: "AI", index: move });
-    currentTurn = 0;
-    renderBoard();
-    renderHistory();
-    const res = checkWinnerAI(board);
-    if (res && res.winner) {
-      notifyStatus('AI wins!');
-      playSound(winSound);  // Play win sound for AI win as well
-      showConfetti();
-      renderBoard(res.line);
-      restartBtn.style.visibility = 'visible';
-      gameOver = true;
-    } else if (res && res.draw) {
-      notifyStatus("It's a draw!");
-      playSound(drawSound);
-      restartBtn.style.visibility = 'visible';
-      gameOver = true;
-    } else {
-      gameOver = false;
+  // Check if AI can win in next move
+  for (let idx of open) {
+    let boardCopy = [...board];
+    boardCopy[idx] = aiAvatar;
+    const res = checkWinnerAI(boardCopy);
+    if (res && res.winner === aiAvatar) {
+      makeAIMove(idx);
+      return;
     }
   }
+
+  // Check if player can win in next move, block it
+  for (let idx of open) {
+    let boardCopy = [...board];
+    boardCopy[idx] = myAvatar;
+    const res = checkWinnerAI(boardCopy);
+    if (res && res.winner === myAvatar) {
+      makeAIMove(idx);
+      return;
+    }
+  }
+
+  // Take center if free
+  if (board[4] === null) {
+    makeAIMove(4);
+    return;
+  }
+
+  // Take one of the corners if free
+  const corners = [0, 2, 6, 8];
+  const openCorners = corners.filter(i => board[i] === null);
+  if (openCorners.length > 0) {
+    makeAIMove(openCorners[Math.floor(Math.random() * openCorners.length)]);
+    return;
+  }
+
+  // Otherwise take any available side
+  makeAIMove(open[Math.floor(Math.random() * open.length)]);
+}
+
+function makeAIMove(index) {
+  board[index] = aiAvatar;
+  history.push({ playerName: "AI", index: index });
+  currentTurn = 0;
+  renderBoard();
+  renderHistory();
+  const res = checkWinnerAI(board);
+  if (res && res.winner) {
+    notifyStatus('AI wins!');
+    playSound(winSound);
+    showConfetti();
+    renderBoard(res.line);
+    restartBtn.style.visibility = 'visible';
+    gameOver = true;
+  } else if (res && res.draw) {
+    notifyStatus("It's a draw!");
+    playSound(drawSound);
+    restartBtn.style.visibility = 'visible';
+    gameOver = true;
+  } else {
+    gameOver = false;
+  }
+}
+
 })();
